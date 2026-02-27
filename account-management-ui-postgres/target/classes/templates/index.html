@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Beneficiary Management</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:40px;
+}
+
+table{
+border-collapse:collapse;
+width:90%;
+}
+
+td,th{
+border:1px solid black;
+padding:8px;
+}
+
+button{
+
+background-color:#007bff;
+color:white;
+border:none;
+padding:6px 12px;
+
+}
+
+.delete{
+
+background-color:red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Beneficiary Management</h2>
+
+<h3>Add Receiver</h3>
+
+<form action="/addReceiver" method="post">
+
+Customer ID:
+<input name="customerId"/>
+
+Receiver Name:
+<input name="receiverName"/>
+
+Account Number:
+<input name="accountNumber"/>
+
+IFSC:
+<input name="ifsc"/>
+
+<button type="submit">
+Add
+</button>
+
+</form>
+
+
+<h3>Search</h3>
+
+<form action="/searchCustomer">
+
+Customer ID:
+<input name="customerId"/>
+
+<button type="submit">
+Search
+</button>
+
+</form>
+
+
+<form action="/searchName">
+
+Receiver Name:
+<input name="receiverName"/>
+
+<button type="submit">
+Search
+</button>
+
+</form>
+
+
+<h3>Receivers</h3>
+
+<table>
+
+<tr>
+
+<th>Customer ID</th>
+<th>Name</th>
+<th>Status</th>
+<th>Account Number</th>
+<th>IFSC Code</th>
+<th>Action</th>
+
+</tr>
+
+<tr th:each="b : ${list}">
+
+<td th:text="${b.customerId}"></td>
+
+<td th:text="${b.receiverName}"></td>
+
+<td th:text="${b.accountNumber}"></td>
+
+<td th:text="${b.ifsc}"></td>
+
+<td th:text="${b.status}"></td>
+
+<td>
+
+<a th:href="@{/deactivate/{id}(id=${b.id})}">
+
+<button class="delete">
+Deactivate
+</button>
+
+</a>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>

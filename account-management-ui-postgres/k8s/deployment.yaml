@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: account-management
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: account-management
+
+  template:
+
+    metadata:
+      labels:
+        app: account-management
+
+    spec:
+
+      containers:
+
+      - name: account-management
+
+        image: npunext1693415005805.azurecr.io/account-service:v2
+
+        imagePullPolicy: Always
+
+
+        ports:
+        - containerPort: 8081
+
+        resources:
+
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
